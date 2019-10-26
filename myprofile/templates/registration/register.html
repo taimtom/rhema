@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="courses ">
+
+<div class="form-class col-sm-6 ">
+
+	<h4>{{title}}</h4>
+	<article class="registration">
+<form method="post" action="{% url 'register' %}">
+{% csrf_token %}
+{{ register_form|crispy }}
+<input type="submit" value="{{title}}" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p><a href="{% url 'login' %}">Already have an account</a></p>
+</article>
+</div>
+
+</section>
+{% endblock content %}

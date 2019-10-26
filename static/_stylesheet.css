@@ -1,0 +1,248 @@
+$section_width:70%;
+header, section, footer, aside, nav, article, figure, figcaption {
+    display: block;
+}
+
+body {
+    color: #19528c;
+    background-color: #f9f8f6;
+    background-image: url("images/dark-wood.png");
+    background-position: center;
+    font-family: Georgia, times, serif;
+    line-height: 1.4em;
+    margin: 0px;
+}
+
+.wrapper {
+    margin: 0px auto 20px auto;
+    border: 2px solid #e8e2e2;
+    background-color: #cfe3ef;
+    min-height: 1500px;
+}
+
+header {
+    background-image: url(images/dark-wood.png);
+}
+h2.logo{
+    width: 400px;
+    float: left;
+    padding: 0px 0px 0px 20px;
+}
+form.search{
+    width:400px;
+    float:right;
+    margin:13px auto 0px auto
+}
+
+
+nav {
+    clear: both;
+    color: #ffffff;
+    background-color: #05305d;
+    height: 30px;
+}
+
+nav.thumbnail {
+    background-color: #f0f1f3;
+    
+}
+nav.thumbnail a{
+    color: #05305d;
+}
+nav ul {
+    margin: 0px;
+    padding: 5px 0px 1px 12px;
+}
+
+nav li {
+    display: inline;
+    margin-right: 40px;
+}
+
+nav  a {
+    margin:;
+    padding: 0px 0px 0px 12px;
+    color: #c2e0ed;
+}
+
+nav li a:hover, nav li a.current,nav li a:active {
+    color: #05305d;
+    background-color:#f9f8f6;
+    border-radius:3px;
+    margin-top:5px;
+    height:35px;
+    text-decoration:none;
+}
+
+nav.logout {
+    text-align: right;
+    float: right;
+    background-color: black;
+    border-radius: 0.1;
+}
+
+section.courses {float: left;
+        width: 60%;
+        min-height: 1500px;
+        border-right: 1px solid #202024;
+        
+        }
+
+            @media screen and (max-width: 1280px) {
+
+                section.courses{
+                    float: left;
+                    min-height: 1500px;
+                    border-right: 1px solid #202024;
+                    width: 80%;
+                }
+
+            }
+
+            @media screen and (max-width: 736px) {
+
+                section.courses {
+                    float: left;
+                    min-height: 1500px;
+                    border-right: 1px solid #202024;
+                    width: 100%;
+                }
+
+            }
+
+article {
+    clear: both;
+    overflow: auto;
+    width: 100%;
+}
+
+hgroup {
+    margin-top: 40px;
+    color: #19528c;;
+}
+
+figure {
+    float: left;
+    width: 200px;
+    height: 220px;
+    padding: 5px;
+    margin: 20px;
+    border: 1px solid #c2e0ed;
+}
+
+figcaption {
+    font-size: 90%;
+    text-align: left;
+}
+.list_small{
+    width:40px;
+    float:left;
+    margin:3px auto 0px auto;
+    color:#c2e0ed;
+}
+
+aside.top {
+    width: 230px;
+    float: left;
+    padding: 0px 0px 0px 20px;
+    border-right: 1px solid #eeeeee;
+}
+
+aside.bottom {
+    width: 220px;
+    float: left;
+    padding: 0px,0px,0px,20px;
+    margin-left:15px
+}
+
+aside section a {
+    color:#6da2d8;
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+aside section a:hover {
+    color: #aba3a5;
+    background-color: #efefef;
+}
+
+a {
+    color:#6da2d8;
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    color:#05305d;
+}
+
+h2 {
+    margin: 10px 0px 5px 0px;
+    padding: 0px;
+
+}
+
+h3 {
+    margin: 0px 0px 10px 0px;
+    color:  #05305d;
+}
+
+aside h2 {
+    padding: 30px 0px 10px 0px;
+    color:#05305d;
+}
+
+footer {
+    font-size: 80%;
+    padding: 7px 0px 0px 20px;
+    clear: both;
+    color: #ffffff;
+    background-color: #05305d;
+}
+}
+.more-articles {
+border-top: 1px solid #ffffff;
+padding: 10px;}
+.more-articles p {
+border-bottom: 1px solid #807c72;
+padding: 5px 0px 15px 0px;
+font-size: 80%;}
+
+.more-articles p:last-child {
+border-bottom: none;}
+.form-class{
+    float: left;
+    padding: 0px 0px 0px 20px;
+}
+#small_text {
+vertical-align: baseline;
+float:left;
+}
+#two-years {
+vertical-align: text-bottom;}
+small.text-muted{
+    color:#6ea5db;
+    float:left;
+}
+p{
+    color:#6ea5db;
+}
+button{
+    width:180px;
+    height:50px;
+    color:#6ea5db;
+    padding:0px;
+    border:0px;
+    border-bottom:1px solid #ccc9c9;
+    margin-left:1px;
+    background-color:#cfe3ef;
+    text-align: left;
+}
+aside section div.button:hover {
+    background-color: #efefef;
+}
+aside section button:hover {
+    color: #aba3a5;
+    background-color: #efefef;
+}

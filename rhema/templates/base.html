@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	{% load humanize %}
+	{% load staticfiles %}
+
+	<head>
+		<title>Rhema</title>{% block head_link %}{% endblock head_link %}
+		<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Rhema</title>
+	
+	
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel= 'stylesheet' href='{% static "bootstrap/css/bootstrap.min.css" %}' type= "text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+	<link rel= 'stylesheet' href='{% static "_stylesheet.css" %}' type= "text/css" />
+
+
+
+
+</head>
+
+
+	{% block head_extra %}{% endblock head_extra %}
+	</head>
+
+<body>
+	<div class="container-fluid">
+		<header>
+		<h2 class="logo">Rhema evereyday</h2>
+									<form class="row search " action='{% url "search" %}'>
+							  	<div class="input-group">
+								     <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" >
+								     <span class='input-group-btn'>
+								      <button class="btn btn-defalt" type="submit">Search</button>
+								  	</span>
+							  	</div>
+							    </form>
+		{% include "nav.html" %}
+	</header>
+									
+		
+
+
+<div class='container-fluid'>
+		
+<div class="wrapper">
+
+
+{% include "side_nav.html" %}
+{% block content %}
+{% endblock content %}
+			
+{% include "side_nav-Copy.html" %}
+{% include "footer.html" %}
+
+
+</div><!-- .wrapper -->
+
+</div>
+
+		{% block head_script %}
+		
+{% endblock head_script %}
+
+</body>
+
+
+</html>

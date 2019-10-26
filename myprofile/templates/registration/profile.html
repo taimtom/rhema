@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="courses">
+	<div class="form-class col-sm-6 ">
+	<article class="registration">
+		<h4>Update Profile</h4>
+<form method="post" action="{% url 'profile_edit' %}">
+{% csrf_token %}
+{{ register_form|crispy }}
+<input type="submit" value="Update Profile" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+</article>
+</div>
+
+</section>
+{% endblock %}

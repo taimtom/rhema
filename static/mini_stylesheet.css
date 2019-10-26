@@ -1,0 +1,93 @@
+section.courses {float: left;
+        width: 63%;
+        min-height: 1500px;
+        border-right: 1px solid #202024;
+		
+		}
+
+			@media screen and (max-width: 1280px) {
+
+				section.courses{
+				    float: left;
+                    min-height: 1500px;
+                    border-right: 1px solid #202024;
+					width: 80%;
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				section.courses {
+				    float: left;
+                    min-height: 1500px;
+                    border-right: 1px solid #202024;
+					width: 100%;
+				}
+
+			}
+
+nav {
+    clear: both;
+    z-index: 999999;
+    position: fixed;
+    background-color:#202024;
+    width:100%;
+    float:left;
+    text-align:left;
+}
+nav ul {
+    margin: 0px;
+    padding: 5px 0px 1px 12px;
+}
+
+nav li {
+    display: inline;
+    margin-right: 40px;
+}
+
+nav  a {
+    margin:;
+    padding: 0px 0px 0px 12px;
+    color: #c2e0ed;
+    text-decoration:none;
+}
+aside.top {
+    width: 230px;
+    float: left;
+    padding: 0px 0px 0px 20px;
+    border-right: 1px solid #202024;
+}
+
+aside.bottom {
+    width: 220px;
+    float: left;
+    padding: 0px,0px,0px,20px;
+    margin-left:15px
+}
+button.side_nav{
+    width:180px;
+    height:50px;
+    color:#202024;
+    padding:0px;
+    border:0px;
+    border-bottom:1px solid #313541;
+    margin-left:1px;
+    background-color:#202024;
+    text-align: left;
+}
+footer {
+    clear: both;
+   
+}
+
+.input-group {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 100%;
+}

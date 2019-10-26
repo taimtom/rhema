@@ -1,0 +1,131 @@
+{% extends "base_video.html" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Banner -->
+			<!--
+				To use a video as your background, set data-video to the name of your video without
+				its extension (eg. images/banner). Your video must be available in both .mp4 and .webm
+				formats to work correctly.
+			-->{% block heading %}
+				<section id="banner" data-video="images/banner">
+					<div class="inner">
+						<header>
+							
+								
+									<h1>Rhema evereyday</h1>
+									<form class="row search " action='{% url "search" %}'>
+							  	<div class="input-group">
+								     <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" >
+								     <span class='input-group-btn'>
+								      <button class="btn btn-defalt" type="submit">Search</button>
+								  	</span>
+							  	</div>
+							    </form>
+									
+							
+							<p>You have {{counted}} rhema filled post, that will surely edify your soul.</p>
+						</header>
+						<a href="#main" class="more">Learn More</a>
+					</div>
+				</section>{% endblock heading %}
+{% block content %}
+{{block.super}}
+
+<section class="courses">
+			<!-- Main -->
+				<div id="main">
+					<div class="inner">
+						
+					<!-- Boxes -->
+						<div class="thumbnails">
+							{% for obj in object_list %}
+							<div class="box">
+								<a href="{{obj.videos.url}}" class="image fit"><img src="{{obj.image.url}}" alt="" /></a>
+								<div class="inner">
+									<h3>{{ obj.title }}</h3>
+									<p>{{obj.get_markdown|truncatechars_html:100}}</p>
+									<a href='{{obj.get_absolute_url}}' class="button fit" data-poptrox="youtube,800x400">Watch</a>
+								</div>
+							</div>
+							{% empty %}
+		<h4> <a href="rhema/post/create">You can also add a rhema filled post</a></h4>
+		<h4> You can also follow other people to see thier post. That can be achieved by clicking on thier profile</h4>
+		
+							{% endfor %}
+							
+
+						</div>
+
+					</div>
+				</div>
+
+<div class="pagination">
+<span class="step-links">
+{% if object_list.has_previous %}
+<a href="?page=1">&laquo; first</a>
+<a href="?page={{ object_list.previous_page_number }}">previous</a>
+{% endif %}
+<span class="current">
+Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+</span>
+{% if object_list.has_next %}
+<a href="?page={{ object_list.next_page_number }}">next</a>
+<a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+{% endif %}
+</span>
+</div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+

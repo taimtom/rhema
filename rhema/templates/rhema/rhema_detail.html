@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% include "head/head.html" %}
+{% block content %}
+{{block.super}}
+<section class="courses">
+	<h3>{{instance.headline}} <div text-align='right'>written by:<small><a href="/u/{{instance.owner}}">{{instance.owner}}</a></small></div>
+	</h3>
+	
+	
+<hr/>
+<p class= "">{{instance.get_markdown}}</p>
+
+{% if instance.image %}
+	<img src='{{ instance.image.url }}' alt="{{ instance.headline }}"   height="500px" /> 
+	{% endif %}
+<div><p class='lead'>Comments</p>
+	<form method="POST" action="." height="100px">{% csrf_token %}
+		{{comment_form|crispy}}
+		<input type='submit' value="Comment" class="btn btn-default"/>
+	</form>
+	{% for comment in comments %}
+	<blockquote>
+	<div class="" >
+		{{comment.content}}
+		<br/>
+		<small >via : {{comment.user}} since {{comment.timestamp|timesince}} ago| <a class="comment-reply-btn" href="#"> Reply </a> | <a class="" href="{{comment.get_absolute_url}}"> Reply Thread </a> |{% if comment.children.count > 0 %}{{comment.children.count}} Reply{% elif comment.children.count > 1 %}Replies{% endif %}</small>
+		<hr/>
+	</div>
+		{% for child_comment in comment.children %}
+		<blockquote>
+		<div class="comment-reply" style='display:none;'>
+			{{child_comment.content}}
+			<br/>
+			<small >via : {{child_comment.user}} since {{child_comment.timestamp|timesince}} ago</small>
+			<hr/>
+		</div>
+		</blockquote>
+		{% endfor %}
+	<form method="POST" action="." class='comment' height="100px">{% csrf_token %}
+		{{comment_form|crispy}}
+		<input type ='hidden' name='parent_id' value='{{ comment.id }}'>
+		<input type='submit' value="Reply" class="btn btn-default"/>
+	</form>
+</blockquote>
+	{% endfor %}
+</div>
+
+</section>
+{% endblock content %}
+

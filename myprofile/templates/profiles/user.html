@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{block.super}}
+
+<section class="courses">
+	<div class="user-header">
+<h2>{{user.username}}</h2>
+
+{% include 'profiles/snippet/follow_user.html' with username=user.username is_following=is_following %}
+</div>
+
+	{% if instance.user.profile_image %}
+	{{instance.user.profile_image}}
+	{% endif %}
+
+	{% for obj in users_object_list %}
+		<article>
+			<a href='{{obj.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start">
+
+	    	<div class="d-flex w-100 justify-content-between">
+	    	{% if obj.image %}	
+				<figure width='200' height='200'>
+			
+				<img  src="{{obj.image.url}}"   class=responsive alt="{{ obj.headline }}" width='190' height='190' />
+
+				</figure>
+			{% endif %}
+			<hgroup>
+			{% if obj.headline %}
+			<h2 class="mb-1">{{obj.headline|truncatechars:30}}</h2>
+			{% endif %}
+			{% if obj.title %}
+			<h2 class="mb-1">{{obj.title|truncatechars:30}}</h2>
+			{% endif %}
+			</hgroup>
+			<div class="list_small">
+			<small class="text-muted">{{obj.timestamp}}</small>
+			<small class="text-muted">{{obj.owner}}</small>
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+
+{% endfor%}
+<div class="pagination">
+<span class="step-links">
+{% if object_list.has_previous %}
+<a href="?page=1">&laquo; first</a>
+<a href="?page={{ object_list.previous_page_number }}">previous</a>
+{% endif %}
+<span class="current">
+Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+</span>
+{% if object_list.has_next %}
+<a href="?page={{ object_list.next_page_number }}">next</a>
+<a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+{% endif %}
+</span>
+
+</div>
+
+
+</section>
+
+{% endblock content %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{{block.super}}
+<section class="courses">
+
+	
+     <h2 class="mb-1">{{instance.title}} </h2> <br/>
+     <audio src="{{ instance.musicfile.url }}" controls autoplay></audio><br/>
+     <small class="text-muted">Posted on : {{instance.timestamp}} |
+		<a href="/u/{{instance.owner}}">Posted By : {{instance.owner}}</a> |
+  		<a href="{{instance.get_artist_url}}">Artist : {{instance.artist}}</a>
+  	</small>
+  	<br/><hr/>
+  	<img src="{{instance.image.url}}">
+    <p class="content-markdown"><h4>Lyrics and other details </h4><br/>
+    	{% for item in obj.get_description %}
+    		<p>{{description}}<p>
+    	{% endfor %}
+	</p>
+
+
+
+
+
+
+    
+<div><p class='lead'>Comment</p>
+	<form method="POST" action="." height="100px">{% csrf_token %}
+		{{comment_form|crispy}}
+		<input type='submit' value="Comment" class="btn btn-default"/>
+	</form>
+	{% for comment in comments %}
+	<blockquote>
+	<div class="" >
+		{{comment.content}}
+		<br/>
+		<small >via : {{comment.user}} since {{comment.timestamp|timesince}} ago| <a class="comment-reply-btn" href="#"> Reply </a> | <a class="" href="{{comment.get_absolute_url}}"> Reply Thread </a> |{% if comment.children.count > 0 %}{{comment.children.count}} Reply{% elif comment.children.count > 1 %}Replies{% endif %}</small>
+		<hr/>
+	</div>
+		{% for child_comment in comment.children %}
+		<blockquote>
+		<div class="comment-reply" style='display:none;'>
+			{{child_comment.content}}
+			<br/>
+			<small >via : {{child_comment.user}} since {{child_comment.timestamp|timesince}} ago</small>
+			<hr/>
+		</div>
+		</blockquote>
+		{% endfor %}
+	<form method="POST" action="." class='comment' height="100px">{% csrf_token %}
+		{{comment_form|crispy}}
+		<input type ='hidden' name='parent_id' value='{{ comment.id }}'>
+		<input type='submit' value="Reply" class="btn btn-default"/>
+	</form>
+</blockquote>
+	{% endfor %}
+</div>
+
+<div class="more-articles container_12">
+<h2 class="grid_12"><a href="">More Articles</a></h2>
+<div class="grid_3">
+<img src="images/more1.jpg" alt="The road ahead" width="220" height="125" />
+<p><a href="">On the Road: from the fixed gear fanatic's point of view</a></p>
+<p><a href="">Brand History: Pashley Cycles - hand-built in England</a></p>
+<p><a href="">Frame Wars: Innovations in cycle manufacture and repair</a></p>
+</div>
+<div class="grid_3">
+<img src="images/more2.jpg" alt="Sketchbook" width="220" height="125" />
+<p><a href="">Touring Diary: A sketchbook in your basket</a></p>
+<p><a href="">Top Ten Newcomers for 2012: A peek at what's to come</a></p>
+<p><a href="">InnerTube: The best cycling videos on the web</a></p>
+</div>
+<div class="grid_3">
+<img src="images/more3.jpg" alt="Repair shop sign" width="220" height="125" />
+<p><a href="">Product Review: All baskets were not created equal</a></p>
+<p><a href="">Going Public: Out &amp; About with the founder of Public</a></p>
+<p><a href="">Cycle Lane Defence: Know your rights</a></p>
+</div>
+<div class="grid_3">
+<img src="images/more4.jpg" alt="Schwinn Spitfire" width="220" height="125" />
+<p><a href="">Bicyle Hall of Fame: The 1958 Schwinn Spitfire</a></p>
+<p><a href="">Reader Survey: Share your thoughts with us!</a></p>
+<p><a href="">Chain Gang: The evolution of the humble bike chain</a></p>
+</div>
+</div><!-- .more-articles -->
+
+
+
+
+
+</section>  
+
+
+
+
+
+{% endblock content %}

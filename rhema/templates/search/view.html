@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load class_name %}
+{% block content %}
+{{block.super}}
+
+
+<div class="">
+
+<section class="courses">
+<h4>You have {{count}} results for <b>{{query}}</b></h4>
+
+{% for object in object_list %}
+	{% with object|class_name as klass %}
+		{% if klass == 'Rhemadb'  %}
+		<article>
+			<h4>Word</h4>
+			<a href='{{object.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start" >
+
+	    	<div class="d-flex ">
+	    	{% if object.image %}
+			<figure width='200' height='200'>
+			<img  width='198' height='201' src="{{object.image.url}}" alt="{{object.headline}}" />
+			<figcaption>{{object.headline}}</figcaption>
+			</figure>
+			{% endif %}
+			<div id= "small_text">
+			<hgroup>
+				
+			<h3 class="mb-1">{{object.headline}}</h3>
+			
+			
+			</hgroup>
+			
+			<p class="mb-1">{{object.get_markdown|truncatechars_html:100}}</p>
+			<small class="text-muted">Written by: {{object.owner}}  |  on: {{object.timestamp}}</small>
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+		{% elif klass == 'Musicdb' %}
+		<h4>Music</h4>
+		<article>
+			<a href='{{object.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start" >
+
+	    	<div class="d-flex ">
+	    		{% if object.image %}
+			<figure width='200' height='200'>
+			<img  width='198' height='201' src="{{object.image.url}}" alt="{{object.title}}" />
+			<figcaption>{{object.title}}</figcaption>
+			</figure>
+			{% endif %}
+			<div id= "small_text">
+			<hgroup>
+				
+			<h3 class="mb-1">{{object.title}}</h3>
+			
+			</hgroup>
+			
+			<p class="mb-1">{{object.get_markdown|truncatechars_html:100}}</p>
+			<small class="text-muted">Written by: {{object.owner}}  |  on: {{object.timestamp}}</small>
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+		{% elif klass == 'Videosdb' %}
+		<article>
+			<h4>Video</h4>
+			<a href='{{object.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start" >
+
+	    	<div class="d-flex">
+	    		{% if object.image %}
+			<figure width='200' height='200'>
+			<img  width='198' height='201' src="{{object.image.url}}" alt="{{object.title}}" />
+			<figcaption>{{object.title}}</figcaption>
+			</figure>
+			{% endif %}
+			<div id= "small_text">
+			<hgroup>
+				
+			<h3 class="mb-1">{{object.title}}</h3>
+			
+		
+			</hgroup>
+			
+			<p class="mb-1">{{object.get_markdown|truncatechars_html:100}}</p>
+			<small class="text-muted">Written by: {{object.owner}}  |  on: {{object.timestamp}}</small>
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+		{% elif klass == 'Comment' %}
+		<article>
+			Comments
+			<a href='{{object.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start" >
+
+	    	<div class="d-flex ">
+	    		
+			
+			<div id= "small_text">
+			
+			
+			<p class="mb-1">{{object.content|truncatechars_html:170}}</p>
+			<small class="text-muted">Written by: {{object.owner}}  |  on: {{object.timestamp}}</small>
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+		{% elif klass == 'MyProfile' %}
+		<article>
+			<h4>People</h4>
+			<a href='{{object.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start" >
+
+	    	<div class="d-flex">
+	    		{% if object.image %}
+			<figure width='200' height='200'>
+			<img  width='198' height='201' src="{{object.profile_image.url}}" alt="{{object.username}}" />
+			<figcaption>{{object.username}}</figcaption>
+			</figure>
+			{% endif %}
+			<div id= "small_text">
+			<hgroup>
+				
+			<h3 class="mb-1">{{object.username}}</h3>
+			
+			
+			</hgroup>
+			
+			
+			
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+		{% endif %}
+	{% endwith %}
+{% empty %}
+		
+		<h4> Sorry nothing like that here. But you can post very nice too<a href="rhema/post/create">lets do it.</a></h4>
+		<h3> Try something else</h3>
+		<form class="row search " action='{% url "search" %}'>
+  		<div class="input-group">
+	     <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" >
+	     <span class='input-group-btn'>
+	      <button class="btn btn-defalt" type="submit">Search</button>
+	  	</span>
+  	</div>
+    </form>
+
+		
+
+
+{% endfor%}
+<div class="pagination">
+<span class="step-links">
+{% if object_list.has_previous %}
+<a href="?page=1">&laquo; first</a>
+<a href="?page={{ object_list.previous_page_number }}">previous</a>
+{% endif %}
+<span class="current">
+Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+</span>
+{% if object_list.has_next %}
+<a href="?page={{ object_list.next_page_number }}">next</a>
+<a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+{% endif %}
+</span>
+</div>
+</section>
+</div>
+{% endblock content %}

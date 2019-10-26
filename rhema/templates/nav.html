@@ -1,0 +1,30 @@
+<nav class="">
+    
+
+<ol class="">
+  <li class="">
+    <a href='{% url "home" %}' >Home </a>
+  </li>
+  <li class="">
+    <a href='{% url "rhema_create" %}' class="" data-toggle="dropdown" href='' role="button" aria-haspopup="true" aria-expanded="false">Create</a>
+  </li>
+  <li class="">
+    <a class="" href='{% url "rhema_list" %}' > Rhema word </a>
+  </li>
+  <li class="">
+    <a class="" href='{% url "video_list" %}' > Video </a>
+  </li>
+  <li class="">
+    <a class="" href='{% url "music_list" %}' > Music </a>
+  </li>
+  <li class="">
+    <a class="" href='{% url "about" %}' > About </a>
+  </li>
+<li> <a class="pull-right" href='/u/{{request.user.username}}' >{{request.user.username}}</li>
+<li class="">
+    <a class="logout pull-right" href='{% url "logout" %}' id="logout" text-align="right"> Logout </a>
+  </li>
+  
+</ol>
+</nav>
+

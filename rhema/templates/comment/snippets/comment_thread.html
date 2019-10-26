@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{{block.super}}
+<section class="courses">
+
+	
+	
+	<h4>	{{comment.content}}</h4>
+		<br/>
+		<small >via : {{comment.user}} since {{comment.timestamp|timesince}} ago| {% if comment.children.count > 0 %}{{comment.children.count}} |Reply{% if comment.children.count > 1 %}s{% endif %}{% endif %}{% if request.user == comment.user %}<a href="{{comment.get_delete_url}}" class="">Delete</a>{% endif %}
+		</small>
+		<hr/>
+	
+		{% for child_comment in comment.children %}
+		<blockquote>
+		
+			{{child_comment.content}}
+			<br/>
+			<small >via : {{child_comment.user}} since {{child_comment.timestamp|timesince}} ago{% if request.user == comment.user %}<a href="{{comment.get_delete_url}}" class="">Delete</a>{% endif %}</small>
+			<hr/>
+	
+		</blockquote>
+		{% endfor %}
+	<form method="POST" action=".">{% csrf_token %}
+		{{form|crispy}}
+		<input type ='hidden' name='parent_id' value='{{ comment.id }}'>
+		<input type='submit' value="Reply" class="btn btn-default"/>
+	</form>
+
+
+
+</section>
+{% endblock content %}
+

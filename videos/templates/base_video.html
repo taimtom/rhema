@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	{% load humanize %}
+	{% load staticfiles %}
+
+	<head>
+		<title>Rhema</title>{% block head_link %}{% endblock head_link %}
+			<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
+		<link rel="stylesheet" href='{% static "mini_stylesheet.css" %}' />
+		
+
+	{% block head_extra %}{% endblock head_extra %}
+	</head>
+<body id="top">
+		{% include "nav.html" %}
+		{% block heading %}
+		{% endblock heading %}
+		
+
+
+<div class='container-fluid'>
+		
+<div class="wrapper">
+
+
+{% include "side_nav.html" %}
+{% block content %}
+{% endblock content %}
+			
+{% include "side_nav-Copy.html" %}
+{% include "footer.html" %}
+
+
+</div><!-- .wrapper -->
+
+</div>
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.poptrox.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+			
+			<script src="{% static 'jquery-ui-1.12.1/jquery-ui.js' %}"></script>
+	<script src="{% static 'marked/marked.min.js' %}"  ></script>
+	
+
+
+</body>
+
+
+</html>

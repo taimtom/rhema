@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% include "head/head.html" %}
+
+{% block content %}
+{{block.super}}
+
+
+<div class="">
+
+<section class="courses">
+
+
+{% for obj in object_list %}
+		<article>
+			<a href='{{obj.get_absolute_url}}' class="list-group-item list-group-item-action flex-column align-items-start" >
+
+	    	<div class="d-flex ">
+	    		{% if obj.image %}
+			<figure width='200' height='200'>
+			<img  width='198' height='201' src="{{obj.image.url}}" alt="{% if obj.headline %}{{obj.headline}}{% elif obj.title %}{{obj.title}}{% endif %}" />
+			<figcaption>{{ obj.headline }}</figcaption>
+			</figure>
+			{% endif %}
+			<div id= "small_text">
+			<hgroup>
+				{% if obj.headline %}
+			<h3 class="mb-1">{{obj.headline}}</h3>
+			{% elif obj.title %}
+			<h2 class="mb-1">{{obj.title}}</h2>
+			{% endif %}
+			</hgroup>
+	
+			<p class="mb-1">{{obj.get_markdown|truncatechars_html:120}}</p>
+			<small class="text-muted">Written by: {{obj.owner}}  |  {{obj.timestamp}}</small>
+			</div>
+			</div>
+			</a>
+
+		
+		</article>
+		{% empty %}
+		<h4> <a href="rhema/post/create">You can also add a rhema filled post</a></h4>
+		<h4> You can also follow other people to see thier post. That can be achieved by clicking on thier profile</h4>
+		
+
+
+{% endfor%}
+
+</section>
+</div>
+{% endblock content %}
