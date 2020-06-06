@@ -1,5 +1,5 @@
 dj-database-url==0.5.0
-django==2.0.6
+django==2.2.13
 django-crispy-forms==1.7.2
 django-image-tools==0.8b3
 django-image-tools-2==1.0
